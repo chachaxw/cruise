@@ -1,0 +1,30 @@
+@import '../../styles/_variables';
+
+.cruise-menu {
+    width: 250px;
+    padding-top: 20px;
+    background-color: $menuBackground;
+
+    .cruise-menu-item {
+        
+        a {
+            text-decoration: none;
+            display: flex;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 8px 20px;
+            align-items: center;
+        }
+
+        &:hover a, .active {
+            color: $cyanBlue;
+            background-color: $menuHover;
+        }
+        
+        .iconfont {
+            margin-right: 15px;
+        }
+    }
+
+}
