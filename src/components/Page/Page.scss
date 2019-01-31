@@ -11,7 +11,13 @@
     }
 
     .left-side {
+        position: relative;
         background-color: $menuBackground;
+
+        .cruise-history {
+            position: absolute;
+            top: 600px;
+        }
     }
 
     .right-side {
