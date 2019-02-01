@@ -1,5 +1,181 @@
 @import '../../styles/_variables';
 
+
+.yellow {
+    background-color: $yellow !important;
+}
+
+.green {
+    background-color: $green !important;
+}
+
 .cruise-agent {
-    
+    .agent-overview {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .agents {
+        margin-top: 12px;
+    }
+}
+
+.card {
+    position: relative;
+    width: 270px;
+    height: 118px;
+    padding: 12px;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+
+    h1 {
+        font-size: 18px;
+        text-transform: capitalize;
+    }
+
+    p {
+        text-align: right;
+        font-size: 48px;
+        padding: 10px 20px;
+    }
+
+    .iconfont {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        line-height: 1;
+        font-size: 144px;
+        color: rgba($color: #FFFFFF, $alpha: 0.2);
+        transform: translate(-50%, -50%);
+    }
+}
+
+.overview {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .overview-item{
+        color: $normalFontColor;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+
+        span:last-child {
+            margin-top: 30px;
+            font-size: 20px;
+            color: $darkFontColor;
+        }
+    }
+}
+
+.agent-item {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+
+    .agent-icon {
+        min-width: 80px;
+        height: 80px;
+    }
+
+    .agent-detail {
+        flex: 1 auto;
+        margin-left: 25px;
+    }
+
+    .agent-info, .agent-operation {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.agent-detail {
+    .agent-info {
+        margin-bottom: 20px;
+
+        >div {
+            margin-right: 15px;
+        }
+
+        .name {
+            color: $cyanBlue;
+        }
+
+        .iconfont {
+            font-size: 16px;
+            color: #ACACAC;
+            margin-right: 10px;
+        }
+
+        .info-with-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-label {
+            color: #FFFFFF;
+            padding: 2px 8px;
+            margin-right: 40px;
+        }
+    }
+}
+
+.agent-operation {
+    display: flex;
+    justify-content: space-between;
+
+    .button-group {
+        flex: 1 auto;
+        display: flex;
+        align-items: center;
+    }
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: $cyanBlue;
+
+    &.resource-button {
+        color: $darkFontColor;
+        background-color: #EFEFEF;
+
+        .iconfont {
+            margin-left: 8px;
+        }
+    }
+}
+
+
+/* Spinning Animation */
+.animation-spinning {
+    animation-name: spinning;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transform-origin: center;
+}
+
+@keyframes spinning {
+    0% {
+        transform: translate(-50%, -50%) rotate(0);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
 }

@@ -50,18 +50,35 @@ const paramsToUriQuery = (params: any): string => {
 /**
  *  ----------------------- API CALLS ---------------------
  */
-export const POST = async <T>(url: string, params: any): Promise<T> => {
+export const GET = async <T>(url: string, params?: any): Promise<T> => {
     const response = await fetch(url + paramsToUriQuery(params), {
-        method: 'POST',
+        method: 'GET',
     });
 
     return await parseResponse<T>(response);
 }
 
-export const GET = async <T>(url: string, params: any): Promise<T> => {
+export const PUT = async <T>(url: string, params: any): Promise<T> => {
     const response = await fetch(url, {
-        method: 'GET',
+        method: 'PUT',
         body: JSON.stringify(params),
+    });
+
+    return await parseResponse<T>(response);
+}
+
+export const POST = async <T>(url: string, params: any): Promise<T> => {
+    const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(params),
+    });
+
+    return await parseResponse<T>(response);
+}
+
+export const DELETE = async <T>(url: string): Promise<T> => {
+    const response = await fetch(url, {
+        method: 'DELETE',
     });
 
     return await parseResponse<T>(response);
