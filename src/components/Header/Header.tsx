@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Wrapper from '../Wrapper/Wrapper';
 import './Header.scss';
 import logo from '../../logo.svg';
 
@@ -36,10 +37,12 @@ export default class Header extends React.Component {
     public render() {
         return (
             <header className="cruise-header">
-                <Link to="/" className="logo">
-                    <img src={logo}></img>
-                </Link>
-                {this.renderUserMenuList()}
+                <Wrapper className="header-wrapper">
+                    <Link to="/" className="logo">
+                        <img src={logo}></img>
+                    </Link>
+                    {this.renderUserMenuList()}
+                </Wrapper>
             </header>
         );
     }

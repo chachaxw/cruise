@@ -6,7 +6,7 @@ export default class Agent extends React.Component {
 
     public render() {
         return (
-            <Page>
+            <Page className="cruise-agent">
                 Agent
             </Page>
         );

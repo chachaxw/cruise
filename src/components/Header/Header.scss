@@ -4,10 +4,16 @@
     position: fixed;
     top: 0;
     width: 100%;
-    display: flex;
-    justify-content: flex-end;
     background-color: #FFFFFF;
     box-shadow: 1px 4px 10px rgba(0, 0, 0, .1);
+
+    .header-wrapper {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-end;
+    }
 
     .logo {
         position: absolute;
@@ -24,7 +30,6 @@
 
 .user-menu-area {
     position: relative;
-    margin-right: 40px;
     padding: 12px;
     display: inline-flex;
     align-items: center;
