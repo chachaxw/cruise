@@ -1,2 +1,24 @@
 @import '../../styles/_variables';
 
+.cruise-nav-tab {
+    display: flex;
+
+    .nav-tab-item {
+        height: 50px;
+        line-height: 50px;
+        padding: 0 25px;
+        min-width: 80px;
+        cursor: pointer;
+        text-align: center;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        border-right: 1px solid #F3F3F3;
+        border-bottom: 3px solid #FFFFFF;
+        background-color: #FFFFFF;
+
+        &.active {
+            color: $cyanBlue;
+            border-bottom-color: $cyanBlue;
+        }
+    }
+}

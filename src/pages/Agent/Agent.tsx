@@ -1,7 +1,17 @@
 import * as React from 'react';
-import { Page } from '../../components';
+import { NavTab, Page, Search } from '../../components';
 import { API } from '../../api/index';
 import './Agent.scss';
+
+enum AgentType {
+    PHYSICAL = 'physical',
+    VIRTUAL = 'virtual',
+}
+
+enum AgentStatus {
+    BUILDING = 'building',
+    IDLE = 'idle',
+}
 
 type AgentItem = {
     id: number,
@@ -20,19 +30,26 @@ interface InternalState {
     agents: AgentItem[];
     physical: AgentItem[];
     virtual: AgentItem[];
+    agentsList: AgentItem[];
 }
 
 export default class Agent extends React.Component<any, InternalState> {
+    private tabList = [
+        { label: 'all', value: 0 },
+        { label: 'physical', value: 1 },
+        { label: 'virtual', value: 2 },
+    ];
 
     constructor(props: any) {
         super(props);
     
         this.state = {
+            agents: [],
             physical: [],
             virtual: [],
+            agentsList: [],
             buildingNum: 0,
             idleNum: 0,
-            agents: [],
         };
     }
     
@@ -46,15 +63,15 @@ export default class Agent extends React.Component<any, InternalState> {
             idleNum = 0;
 
         response.map((item: any) => {
-            if (item.type === 'physical') {
+            if (item.type === AgentType.PHYSICAL) {
                 physical.push(item);
             }
 
-            if (item.type === 'virtual') {
+            if (item.type === AgentType.VIRTUAL) {
                 virtual.push(item);
             }
-            buildingNum += item.status === 'building' ? 1 : 0;
-            idleNum += item.status === 'idle' ? 1 : 0;
+            buildingNum += item.status === AgentStatus.BUILDING ? 1 : 0;
+            idleNum += item.status === AgentStatus.IDLE ? 1 : 0;
 
             return item;
         });
@@ -64,8 +81,43 @@ export default class Agent extends React.Component<any, InternalState> {
             virtual,
             buildingNum,
             idleNum,
-            agents: response as AgentItem[] 
+            agents: response as AgentItem[],
+            agentsList: response as AgentItem[],
         });
+    }
+
+    public switchListType(value: 'list' | 'card') {
+        console.log('List style', value);
+    }
+
+    public handleTabChange(value: number) {
+        const { physical, virtual, agents } = this.state;
+        const active = this.tabList.find(item => item.value === value);
+        
+        if (!active) {
+            return;
+        }
+
+        if (active.label === AgentType.PHYSICAL) {
+            this.setState({ agentsList: physical });
+        } else if (active.label === AgentType.VIRTUAL) {
+            this.setState({ agentsList: virtual });
+        } else {
+            this.setState({ agentsList: agents });
+        }
+    }
+
+    public handleSearch(value: string) {
+        const { agents } = this.state;
+        const matched = [];
+
+        for (var i = 0; i < agents.length; i++) {
+            if (agents[i].name.match(value) != null) {
+                matched.push(agents[i]);
+            }
+        }
+
+        this.setState({ agentsList: matched });
     }
 
     public async removeResource(id: number, index: number) {
@@ -107,9 +159,11 @@ export default class Agent extends React.Component<any, InternalState> {
 
     public renderCardWithIcon(props: any) {
         return (
-            <div className={`card ${props.status === 'building' ? 'yellow' : 'green'}`}>
+            <div className={`card ${props.status === AgentStatus.BUILDING ? 'yellow' : 'green'}`}>
                 <div 
-                    className={`iconfont ${props.status === 'building' ? 'icon-cog animation-spinning' : 'icon-coffee'}`}>
+                    className={`iconfont ${
+                        props.status === AgentStatus.BUILDING ? 'icon-cog animation-spinning' : 'icon-coffee'}`
+                    }>
                 </div>
                 <h1>{props.status}</h1>
                 <p>{props.num}</p>
@@ -130,9 +184,9 @@ export default class Agent extends React.Component<any, InternalState> {
                     <div className="agent-info">
                         <div className="info-with-icon">
                             <span className="iconfont icon-desktop"></span>
-                            <span className="name">{props.name}</span>
+                            <span className="name" title={props.name}>{props.name}</span>
                         </div>
-                        <div className={`info-label ${props.status === 'building' ? 'yellow' : 'green'}`}>
+                        <div className={`info-label ${props.status === AgentStatus.BUILDING ? 'yellow' : 'green'}`}>
                             {props.status}
                         </div>
                         <div className="info-with-icon">
@@ -141,7 +195,7 @@ export default class Agent extends React.Component<any, InternalState> {
                         </div>
                         <div className="info-with-icon">
                             <span className="iconfont icon-folder"></span>
-                            <span>{props.ip}</span>
+                            <span className="location" title={props.location}>{props.location}</span>
                         </div>
                     </div>
                     <div className="agent-operation">
@@ -159,10 +213,12 @@ export default class Agent extends React.Component<any, InternalState> {
                                 )): null
                             }
                         </div>
-                        <button className="deny-button">
-                            <span className="iconfont icon-deny"></span>
-                            <span>Deny</span>
-                        </button>
+                        {props.status === AgentStatus.BUILDING ?
+                            <button className="deny-button">
+                                <span className="iconfont icon-deny"></span>
+                                <span>Deny</span>
+                            </button> : null
+                        }
                     </div>
                 </div>
             </div>
@@ -175,19 +231,34 @@ export default class Agent extends React.Component<any, InternalState> {
             virtual,
             buildingNum,
             idleNum,
-            agents,
+            agentsList,
         } = this.state;
 
         return (
             <Page className="cruise-agent">
                 <div className="agent-overview">
-                    {this.renderCardWithIcon({ status: 'building', num: buildingNum })}
-                    {this.renderCardWithIcon({ status: 'idle', num: idleNum })}
+                    {this.renderCardWithIcon({ status: AgentStatus.BUILDING, num: buildingNum })}
+                    {this.renderCardWithIcon({ status: AgentStatus.IDLE, num: idleNum })}
                     {this.renderCard({ physicalNum: physical.length, virtualNum: virtual.length })}
                 </div>
+                <div className="agent-navbar">
+                    <NavTab 
+                        tabList={this.tabList} active={0}
+                        onTabChange={(value: number) => this.handleTabChange(value)}>
+                    </NavTab>
+                    <Search onSearch={(value: string) => this.handleSearch(value)} />
+                    <div 
+                        className="iconfont list-type icon-th-card" 
+                        onClick={() => this.switchListType('card')}>
+                    </div>
+                    <div
+                        className="iconfont list-type icon-th-list active"
+                        onClick={() => this.switchListType('list')}>
+                    </div>
+                </div>
                 <div className="agents">
-                    {agents && agents.length ?
-                        agents.map(item => this.renderAgentItem(item)) : null
+                    {agentsList && agentsList.length ?
+                        agentsList.map(item => this.renderAgentItem(item)) : null
                     }
                 </div>
             </Page>
