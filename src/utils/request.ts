@@ -46,6 +46,17 @@ const paramsToUriQuery = (params: any): string => {
     }).join('&');
 }
 
+/**
+ * Set request headers
+ * @return object
+ */
+const getHeaders = () => {
+    return {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+  };
+  
 
 /**
  *  ----------------------- API CALLS ---------------------
@@ -53,6 +64,7 @@ const paramsToUriQuery = (params: any): string => {
 export const GET = async <T>(url: string, params?: any): Promise<T> => {
     const response = await fetch(url + paramsToUriQuery(params), {
         method: 'GET',
+        headers: getHeaders(),
     });
 
     return await parseResponse<T>(response);
@@ -61,6 +73,7 @@ export const GET = async <T>(url: string, params?: any): Promise<T> => {
 export const PUT = async <T>(url: string, params: any): Promise<T> => {
     const response = await fetch(url, {
         method: 'PUT',
+        headers: getHeaders(),
         body: JSON.stringify(params),
     });
 
@@ -70,6 +83,7 @@ export const PUT = async <T>(url: string, params: any): Promise<T> => {
 export const POST = async <T>(url: string, params: any): Promise<T> => {
     const response = await fetch(url, {
         method: 'POST',
+        headers: getHeaders(),
         body: JSON.stringify(params),
     });
 
@@ -79,6 +93,7 @@ export const POST = async <T>(url: string, params: any): Promise<T> => {
 export const DELETE = async <T>(url: string): Promise<T> => {
     const response = await fetch(url, {
         method: 'DELETE',
+        headers: getHeaders(),
     });
 
     return await parseResponse<T>(response);

@@ -68,12 +68,12 @@ export default class Agent extends React.Component<any, InternalState> {
         });
     }
 
-    public async removeResource(id: number, resource: string) {
+    public async removeResource(id: number, index: number) {
         let { agents } = this.state;
 
         agents = agents.map((item: AgentItem) => {
             if (item.id === id) {
-                item.resources = item.resources.filter(d => d !== resource);
+                item.resources = item.resources.filter((d, i) => i !== index);
             }
             return item;
         });
@@ -151,7 +151,8 @@ export default class Agent extends React.Component<any, InternalState> {
                             </button>
                             {props.resources && props.resources.length ?
                                 props.resources.map((item: string, index: number) => (
-                                    <button className="resource-button" key={index} onClick={() => this.removeResource(props.id, item)}>
+                                    <button className="resource-button" key={index} 
+                                        onClick={() => this.removeResource(props.id, index)}>
                                         <span>{item}</span>
                                         <span className="iconfont icon-trash"></span>
                                     </button> 

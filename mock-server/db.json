@@ -1,5 +1,6 @@
 {
-  "agents": [{
+  "agents": [
+    {
       "name": "bjstdmngbdr01.thoughtworks.com",
       "os": "windows",
       "status": "idle",
