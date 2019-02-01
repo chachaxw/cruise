@@ -80,7 +80,7 @@
     justify-content: space-around;
 
     .overview-item {
-        color: $normalFontColor;
+        color: $normalColor;
         font-size: 12px;
         display: flex;
         align-items: center;
@@ -171,33 +171,26 @@
     }
 }
 
-button {
-    display: inline-flex;
-    align-items: center;
-    margin: 5px;
-    border: none;
-    font-size: 14px;
-    outline: none;
-    cursor: pointer;
-    color: #FFFFFF;
-    background-color: $cyanBlue;
+.add-button {
+    padding: 3px 4px;
 
-    &.resource-button {
-        color: $darkFontColor;
-        background-color: #EFEFEF;
-
-        .iconfont {
-            margin-left: 8px;
-        }
-    }
-
-    &.deny-button {
-        .iconfont {
-            margin-right: 8px;
-        }
+    .iconfont {
+        font-size: 18px;
     }
 }
 
+.resource-button {
+    color: $darkColor;
+    background-color: #EFEFEF;
+
+    &:hover {
+        background-color: #EFEFEF;
+    }
+
+    .iconfont {
+        margin-left: 8px;
+    }
+}
 
 /* Spinning Animation */
 .animation-spinning {

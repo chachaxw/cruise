@@ -1,0 +1,44 @@
+@import '../../styles/_variables';
+
+.cruise-popup {
+    width: 570px;
+    padding: 16px;
+    position: absolute;
+    z-index: 99;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: 1px solid $cyanBlue;
+    box-shadow: 0 3px 5px rgba($color: #000000, $alpha: .3);
+
+    &::before {
+        content: "";
+        width: 14px;
+        height: 14px;
+        position: absolute;
+        top: -8px;
+        display: inline-block;
+        background-color: #FFFFFF;
+        border-right: 1px solid $cyanBlue;
+        border-bottom: 1px solid $cyanBlue;
+        transform: rotate(-149deg) skew(7deg, 28deg);
+    }
+
+    .popup-input {
+        width: 100%;
+        display: block;
+        height: 36px;
+        margin-top: 10px;
+        margin-bottom: 16px;
+        padding: 10px;
+        outline: none;
+        font-size: 14px;
+        border-radius: 3px;
+        box-sizing: border-box;
+        border: 1px solid #979797;
+        box-shadow: 0 1px 2px rgba($color: #000000, $alpha: .2) inset;
+    }
+
+    .add-resource-button {
+        margin-left: 0;
+    }
+}

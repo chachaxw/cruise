@@ -9,7 +9,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 14px;
-    color: $darkFontColor;
+    color: $darkColor;
     background-color: $backgroundColor;
     font-family: "cruise","Helvetica Neue","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -23,4 +23,36 @@ code {
 /* Global Style */
 .iconfont {
     font-size: 20px;
+}
+
+button {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    background-color: $cyanBlue;
+    
+    &:hover {
+        background-color: $darkBlue;
+    }
+
+    &.deny-button {
+        .iconfont {
+            font-size: 14px;
+            margin-right: 8px;
+        }
+    }
+
+    &.cancel-button {
+        background-color: $normalColor;
+
+        &:hover {
+            background-color: $darkColor;
+        }
+    }
 }

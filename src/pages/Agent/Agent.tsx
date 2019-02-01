@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavTab, Page, Search } from '../../components';
+import { NavTab, Page, Search, Popup } from '../../components';
 import { API } from '../../api/index';
 import './Agent.scss';
 
@@ -25,12 +25,14 @@ type AgentItem = {
 }
 
 interface InternalState {
+    agentId: number | null;
     idleNum: number;
     buildingNum: number;
     agents: AgentItem[];
     physical: AgentItem[];
     virtual: AgentItem[];
     agentsList: AgentItem[];
+    popupVisible: boolean;
 }
 
 export default class Agent extends React.Component<any, InternalState> {
@@ -50,9 +52,10 @@ export default class Agent extends React.Component<any, InternalState> {
             agentsList: [],
             buildingNum: 0,
             idleNum: 0,
+            agentId: null,
+            popupVisible: false,
         };
     }
-    
 
     public async componentDidMount() {
         const response = await API.getAgentsList();
@@ -118,6 +121,35 @@ export default class Agent extends React.Component<any, InternalState> {
         }
 
         this.setState({ agentsList: matched });
+    }
+
+    public handlePopup(id: number) {
+        console.log('this is a test', id);
+        this.setState({ agentId: id, popupVisible: true });
+    }
+
+    public async addResource(value: string) {
+        const { agentId, agents } = this.state;
+
+        if (!agentId) {
+            return;
+        }
+
+        const resources = value.split(',').map(item => item.trim());
+
+        const list = agents.map((item: AgentItem) => {
+            if (item.id === agentId) {
+                item.resources = item.resources.concat(resources);
+            }
+            return item;
+        });
+
+        const agent = list.find(item => item.id === agentId);
+        const response = await API.putAgent(agentId, agent);
+
+        if (response) {
+            this.setState({ agentsList: list });
+        }
     }
 
     public async removeResource(id: number, index: number) {
@@ -200,9 +232,13 @@ export default class Agent extends React.Component<any, InternalState> {
                     </div>
                     <div className="agent-operation">
                         <div className="button-group">
-                            <button className="add-button">
-                                <span className="iconfont icon-plus"></span>
-                            </button>
+                            <Popup
+                                isVisible={this.state.popupVisible}
+                                onAdd={(value) => this.addResource(value)}>
+                                <button className="add-button" onClick={() => this.handlePopup(props.id)}>
+                                    <span className="iconfont icon-plus"></span>
+                                </button>
+                            </Popup>
                             {props.resources && props.resources.length ?
                                 props.resources.map((item: string, index: number) => (
                                     <button className="resource-button" key={index} 
