@@ -74,7 +74,6 @@ export default class Popup extends React.Component<InternalProps, InternalState>
         }
 
         const box = event.target.getBoundingClientRect();
-        console.log(event.target, box);
         const top = box.y + box.height + this.arrowHeight;
         const left = box.x - box.width/2 - this.arrowWidth/2;
 

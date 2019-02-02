@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with correctly header content 1`] = `
+<header
+  className="cruise-header"
+>
+  <div
+    className="header-wrapper"
+    style={Object {}}
+  >
+    <a
+      className="logo"
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        src="logo.svg"
+      />
+    </a>
+    <div
+      className="user-menu-area"
+    >
+      <div
+        className="user-avatar"
+      >
+        <span
+          className="avatar-img"
+        />
+        <span
+          className="iconfont icon-angle-down"
+        />
+      </div>
+      <ul
+        className="user-menu-list"
+      >
+        <li
+          className="user-menu-item"
+        >
+          <span
+            className="iconfont icon-id-card"
+          />
+          <span
+            className="menu-label"
+          >
+            Profile
+          </span>
+        </li>
+        <li
+          className="user-menu-item"
+        >
+          <span
+            className="iconfont icon-sign-in"
+          />
+          <span
+            className="menu-label"
+          >
+            Sign Out
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+`;

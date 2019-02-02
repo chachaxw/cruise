@@ -124,7 +124,7 @@ export default class Agent extends React.Component<any, InternalState> {
     }
 
     public handlePopup(id: number) {
-        console.log('this is a test', id);
+        // console.log('this is a test', id);
         this.setState({ agentId: id, popupVisible: true });
     }
 

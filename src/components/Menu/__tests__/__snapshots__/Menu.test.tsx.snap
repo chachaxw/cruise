@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with given prop menu 1`] = `
+<div
+  className="cruise-menu"
+>
+  <ul>
+    <li
+      className="cruise-menu-item"
+    >
+      <a
+        aria-current={null}
+        href="/test1"
+        onClick={[Function]}
+      >
+        <span
+          className="iconfont icon-test1"
+        />
+        <span>
+          TEST1
+        </span>
+      </a>
+    </li>
+    <li
+      className="cruise-menu-item"
+    >
+      <a
+        aria-current={null}
+        href="/test2"
+        onClick={[Function]}
+      >
+        <span
+          className="iconfont icon-test2"
+        />
+        <span>
+          TEST2
+        </span>
+      </a>
+    </li>
+    <li
+      className="cruise-menu-item"
+    >
+      <a
+        aria-current={null}
+        href="/test3"
+        onClick={[Function]}
+      >
+        <span
+          className="iconfont icon-test3"
+        />
+        <span>
+          TEST3
+        </span>
+      </a>
+    </li>
+    <li
+      className="cruise-menu-item"
+    >
+      <a
+        aria-current={null}
+        href="/test4"
+        onClick={[Function]}
+      >
+        <span
+          className="iconfont icon-test4"
+        />
+        <span>
+          TEST4
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+`;

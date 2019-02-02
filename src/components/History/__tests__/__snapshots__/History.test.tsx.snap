@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with given prop history 1`] = `
+<div
+  className="cruise-history"
+>
+  <h1>
+    History
+  </h1>
+  <ul
+    className="history-list"
+  >
+    <li
+      className="history-item"
+    >
+      <span
+        className="item-dot"
+      />
+      <p>
+        Test Agent1
+        /
+        Test Status1
+      </p>
+    </li>
+    <li
+      className="history-item"
+    >
+      <span
+        className="item-dot"
+      />
+      <p>
+        Test Agent2
+        /
+        Test Status2
+      </p>
+    </li>
+    <li
+      className="history-item"
+    >
+      <span
+        className="item-dot"
+      />
+      <p>
+        Test Agent3
+        /
+        Test Status3
+      </p>
+    </li>
+  </ul>
+</div>
+`;

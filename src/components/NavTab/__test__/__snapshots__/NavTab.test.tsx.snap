@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with given prop active 1`] = `null`;
+
+exports[`renders correctly with given prop tabList 1`] = `
+<div
+  className="cruise-nav-tab"
+>
+  <div
+    className="nav-tab-item active"
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test1
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test2
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test3
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders correctly with given prop tabList 2`] = `
+<div
+  className="cruise-nav-tab"
+>
+  <div
+    className="nav-tab-item active"
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test1
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test2
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test3
+    </span>
+  </div>
+</div>
+`;
+
+exports[`renders different active tab by click tab item 1`] = `
+<div
+  className="cruise-nav-tab"
+>
+  <div
+    className="nav-tab-item active"
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test1
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test2
+    </span>
+  </div>
+  <div
+    className="nav-tab-item "
+    onClick={[Function]}
+  >
+    <span
+      className="nav-tab-item-label"
+    >
+      Test3
+    </span>
+  </div>
+</div>
+`;
