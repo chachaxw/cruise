@@ -135,7 +135,7 @@ export default class Agent extends React.Component<any, InternalState> {
             return;
         }
 
-        const resources = value.split(',').map(item => item.trim());
+        const resources = value.split(',').map(item => item.trim()).filter(item => item !== '');
 
         const list = agents.map((item: AgentItem) => {
             if (item.id === agentId) {
@@ -148,7 +148,7 @@ export default class Agent extends React.Component<any, InternalState> {
         const response = await API.putAgent(agentId, agent);
 
         if (response) {
-            this.setState({ agentsList: list });
+            this.setState({ agentsList: list, popupVisible: false });
         }
     }
 
@@ -232,13 +232,9 @@ export default class Agent extends React.Component<any, InternalState> {
                     </div>
                     <div className="agent-operation">
                         <div className="button-group">
-                            <Popup
-                                isVisible={this.state.popupVisible}
-                                onAdd={(value) => this.addResource(value)}>
-                                <button className="add-button" onClick={() => this.handlePopup(props.id)}>
-                                    <span className="iconfont icon-plus"></span>
-                                </button>
-                            </Popup>
+                            <button className="add-button" onClick={() => this.handlePopup(props.id)}>
+                                <span className="iconfont icon-plus"></span>
+                            </button>
                             {props.resources && props.resources.length ?
                                 props.resources.map((item: string, index: number) => (
                                     <button className="resource-button" key={index} 
@@ -297,6 +293,11 @@ export default class Agent extends React.Component<any, InternalState> {
                         agentsList.map(item => this.renderAgentItem(item)) : null
                     }
                 </div>
+                <Popup
+                    isVisible={this.state.popupVisible}
+                    onCancel={(visible: boolean) => this.setState({ popupVisible: visible })}
+                    onAdd={(value) => this.addResource(value)}>
+                </Popup>
             </Page>
         );
     }

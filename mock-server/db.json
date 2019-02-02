@@ -8,9 +8,11 @@
       "ip": "192.168.1.102",
       "location": "/var/lib/cruise-agent",
       "resources": [
-        "Firefox",
         "Safari",
-        "Ubuntu"
+        "Firefox",
+        "Chrome",
+        "Hello",
+        "World"
       ],
       "id": 1
     },
@@ -39,8 +41,9 @@
       "resources": [
         "Firefox",
         "Safari",
-        "Test",
-        "World"
+        "World",
+        "Hello",
+        "Test"
       ],
       "id": 3
     },

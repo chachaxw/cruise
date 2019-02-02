@@ -4,6 +4,8 @@
     width: 570px;
     padding: 16px;
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 99;
     box-sizing: border-box;
     background-color: #FFFFFF;
@@ -20,7 +22,7 @@
         background-color: #FFFFFF;
         border-right: 1px solid $cyanBlue;
         border-bottom: 1px solid $cyanBlue;
-        transform: rotate(-149deg) skew(7deg, 28deg);
+        transform: rotate(-148deg) skew(4deg, 28deg);
     }
 
     .popup-input {
@@ -40,5 +42,11 @@
 
     .add-resource-button {
         margin-left: 0;
+    }
+
+    &.arrow-down::before {
+        top: unset;
+        bottom: -8px;
+        transform: rotate(32deg) skew(4deg, 28deg);
     }
 }
