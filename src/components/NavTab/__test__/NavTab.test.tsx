@@ -1,6 +1,5 @@
 import * as React from 'react';
 import TestRenderer from 'react-test-renderer';
-import ReactTestUtils from 'react-dom/test-utils';
 import NavTab from '../NavTab';
 
 it('renders correctly with given prop active', () => {
